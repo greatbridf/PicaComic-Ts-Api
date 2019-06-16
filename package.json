@@ -1,0 +1,19 @@
+{
+  "name": "picacomic-ts-api",
+  "version": "1.0.0",
+  "description": "picacomit api in typescript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/greatbridf/PicaComic-Ts-Api.git"
+  },
+  "author": "greatbridf",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/greatbridf/PicaComic-Ts-Api/issues"
+  },
+  "homepage": "https://github.com/greatbridf/PicaComic-Ts-Api#readme"
+}
