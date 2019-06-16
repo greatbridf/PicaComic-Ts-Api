@@ -1,0 +1,7 @@
+# vscode
+.vscode/
+# node
+node_modules/
+# distribution
+dist/
+release/
