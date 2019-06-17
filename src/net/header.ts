@@ -10,7 +10,6 @@ class Header {
   }
 
   json(): string {
-    console.log(JSON.stringify(this.header))
     return JSON.stringify(this.header)
   }
 }
