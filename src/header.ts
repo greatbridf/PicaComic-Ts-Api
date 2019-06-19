@@ -1,12 +1,18 @@
 import Header from '@src/net/header'
 import generator from '@src/utils/generator'
 
-class PicaRequest {
+enum Method {
+  GET = 'GET',
+  POST = 'POST',
+}
+
+class PicaHeader {
   private header: Header = new Header()
-  private host: string = null
-  private method: string = null
-  private authorization: string = null
   private secret_key = '~n}$S9$lGts=U)8zfL/R.PM9;4[3|@/CEsl~Kk!7?BYZ:BAa5zkkRBL7r|1/*Cr'
+
+  host: string
+  method: Method
+  private auth: string
 
   constructor() {
     this.header.set('api-key', 'C69BAF41DA5ABD1FFEDC6D2FEA56B')
@@ -25,21 +31,13 @@ class PicaRequest {
     this.header.set(key, value)
   }
 
-  setMethod(method: string) {
-    this.method = method
-  }
-
-  getMethod(): string { return this.method }
-
-  setHost(host: string) {
-    this.host = host
-  }
-
-  getHost(): string { return this.host }
-
-  setAuthorization(auth: string) {
-    this.authorization = auth
+  set authorization(auth: string) {
+    this.auth = auth
     this.header.set('authorization', auth)
+  }
+
+  get authorization(): string {
+    return this.auth
   }
 
   getRequest(): Header {
@@ -71,4 +69,8 @@ class PicaRequest {
   }
 }
 
-export default PicaRequest
+export default PicaHeader
+export {
+  Method,
+  PicaHeader,
+}
