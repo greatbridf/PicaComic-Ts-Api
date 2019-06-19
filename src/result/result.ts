@@ -1,17 +1,28 @@
-class PicaResult {
-  protected responseJson: any
+interface PicaResultData {
+  token?: string,
+  categories?: string[],
+}
 
-  constructor(responseJson: any) {
-    if (typeof(responseJson) === 'string') {
-      this.responseJson = JSON.parse(responseJson)
+class PicaResult {
+  protected response: any
+  protected responseData: PicaResultData
+
+  constructor(response: any) {
+    if (typeof(response) === 'object') {
+      this.response = response
     } else {
-      this.responseJson = responseJson
+      this.response = JSON.parse(response)
+    }
+    if (this.response.data) {
+      this.responseData = this.response.data
+    } else {
+      throw new Error('data not found')
     }
   }
 
   getData(name: string): any {
-    if (this.responseJson[name]) {
-      return this.responseJson[name]
+    if (this.responseData[name]) {
+      return this.responseData[name]
     } else {
       throw new Error('data not found')
     }
