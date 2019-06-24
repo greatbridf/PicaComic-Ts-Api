@@ -3,19 +3,19 @@ import PicaApi from '@src/request/api'
 import PicaLoginResult from '@src/result/login_result'
 
 class PicaLoginApi extends PicaApi {
-  constructor() {
-    var req = new PicaHeader()
-    req.host = 'https://picaapi.picacomic.com/auth/sign-in'
-    req.method = Method.POST
-    super(req)
+  constructor(header: PicaHeader) {
+    header = header.copy()
+    header.host = 'https://picaapi.picacomic.com/auth/sign-in'
+    header.method = Method.POST
+    super(header)
   }
 
   async login(username: string, password: string): Promise<PicaLoginResult> {
-    var resp = await this.postData({
+    var response = await this.postData({
       email: username,
       password: password,
     })
-    return new PicaLoginResult(resp)
+    return new PicaLoginResult(response)
   }
 }
 

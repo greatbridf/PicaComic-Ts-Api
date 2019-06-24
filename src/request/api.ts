@@ -3,32 +3,32 @@ import PicaHeader from '@src/header'
 import request from 'request-promise-native'
 
 class PicaApi {
-  protected req: PicaHeader = null
+  protected header: PicaHeader = null
 
-  constructor(req: PicaHeader) {
-    this.req = req
+  constructor(header: PicaHeader) {
+    this.header = header
   }
 
   async post(): Promise<request.FullResponse> {
-    return await request(this.req.host, {
-      method: this.req.method,
-      headers: JSON.parse(this.req.getRequest().json()),
+    return await request(this.header.host, {
+      method: this.header.method,
+      headers: JSON.parse(this.header.getRequest().json()),
     })
   }
 
   async postData(data: object): Promise<request.FullResponse> {
-    return await request(this.req.host, {
-      method: this.req.method,
-      headers: JSON.parse(this.req.getRequest().json()),
+    return await request(this.header.host, {
+      method: this.header.method,
+      headers: JSON.parse(this.header.getRequest().json()),
       body: data,
       json: true,
     })
   }
 
   async get(): Promise<request.FullResponse> {
-    return await request(this.req.host, {
-      method: this.req.method,
-      headers: JSON.parse(this.req.getRequest().json()),
+    return await request(this.header.host, {
+      method: this.header.method,
+      headers: JSON.parse(this.header.getRequest().json()),
     })
   }
 }

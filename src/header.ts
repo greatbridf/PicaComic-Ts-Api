@@ -8,7 +8,7 @@ enum Method {
 
 class PicaHeader {
   private header: Header = new Header()
-  private secret_key = '~n}$S9$lGts=U)8zfL/R.PM9;4[3|@/CEsl~Kk!7?BYZ:BAa5zkkRBL7r|1/*Cr'
+  private readonly secret_key = '~n}$S9$lGts=U)8zfL/R.PM9;4[3|@/CEsl~Kk!7?BYZ:BAa5zkkRBL7r|1/*Cr'
 
   host: string
   method: Method
@@ -44,6 +44,10 @@ class PicaHeader {
     this.header.set('time', (Date.now() / 1000).toFixed(0))
     this.header.set('signature', this.genSignature())
     return this.header
+  }
+
+  copy(): PicaHeader {
+    return Object.create(this)
   }
 
   private genNonce(): string {

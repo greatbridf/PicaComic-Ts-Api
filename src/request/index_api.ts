@@ -3,17 +3,16 @@ import { Method, PicaHeader } from '@src/header'
 import PicaCategoriesResult from '@src/result/index/categories_result'
 
 class PicaIndexApi extends PicaApi {
-  constructor(auth: string) {
-    var req = new PicaHeader()
-    req.method = Method.GET
-    req.authorization = auth
-    super(req)
+  constructor(header: PicaHeader) {
+    header = header.copy()
+    header.method = Method.GET
+    super(header)
   }
 
   async getCategories(): Promise<PicaCategoriesResult> {
-    this.req.host = 'https://picaapi.picacomic.com/categories'
-    var resp = await this.get()
-    return new PicaCategoriesResult(resp)
+    this.header.host = 'https://picaapi.picacomic.com/categories'
+    var response = await this.get()
+    return new PicaCategoriesResult(response)
   }
 }
 
